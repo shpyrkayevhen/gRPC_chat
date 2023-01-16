@@ -1,0 +1,51 @@
+syntax = "proto3";
+package package.chat;
+
+
+message User {
+    string login = 1; 
+    string fullName = 2;
+}
+
+
+message Users {
+    repeated User user = 1;    
+}
+
+
+message Message {
+    uint32 id = 1;
+    User from_user = 2;
+    User to_user = 3;
+    float created_at = 4;
+    string body = 5;
+}
+
+
+message sendMessageRequest {
+    Message message = 1;
+}
+message sendMessageResponce {
+    string response = 1;
+}
+
+
+message getMessagesRequest {
+    User user = 1;
+}
+message getMessagesResponce {}
+
+
+message getUsersRequest {} // empty 
+message getUsersResponce {
+    Users users = 1;
+}
+
+
+// create services
+service ChatService {
+    // create grpc methods
+    rpc sendMessage (sendMessageRequest) returns (sendMessageResponce);
+    rpc getUsers (getUsersRequest) returns (getUsersResponce);
+    rpc getMessages (getMessagesRequest) returns (stream getMessagesResponce);
+}
