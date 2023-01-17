@@ -5,8 +5,6 @@ import grpc
 import time
 
 
-
-
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
     
 
@@ -46,7 +44,7 @@ if __name__ == "__main__":
 
     print("Server Started")
 
-    server.add_insecure_port("[::]:6000")
+    server.add_insecure_port("[::]:5050")
     server.start()
     
     try:
