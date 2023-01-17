@@ -1,9 +1,10 @@
-import chat_pb2_grpc
-import chat_pb2
+import protos.chat_pb2_grpc as chat_pb2_grpc
+import protos.chat_pb2 as chat_pb2
+from concurrent import futures
 import grpc
 import time
 
-from concurrent import futures
+
 
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
@@ -38,7 +39,6 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         return chat_pb2.getUsersResponce(users=ChatServiceServicer.users)
     
 
-# Create server. Connect ip and port for listening
 if __name__ == "__main__":
     
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))
@@ -46,12 +46,12 @@ if __name__ == "__main__":
 
     print("Server Started")
 
-    server.add_insecure_port("[::]:5050")
+    server.add_insecure_port("[::]:6000")
     server.start()
+    
     try:
         server.wait_for_termination()
     except:
-        del ChatServiceServicer.users
         print("Server end")
 
 
