@@ -28,6 +28,9 @@ def run():
         listOfUsers = stub.getUsers(chat_pb2.getUsersRequest())
         print(listOfUsers)
 
+        # Create the user and get all his messages from server
+
+
 if __name__ == "__main__":
     run()
 
