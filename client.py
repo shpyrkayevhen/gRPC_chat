@@ -3,7 +3,7 @@ import chat_proto.chat_pb2 as chat_pb2
 import grpc
 
 
-def message():
+def create_message():
 
     message = chat_pb2.Message()
     message.id = 1
@@ -15,28 +15,43 @@ def message():
     return message
 
 
+def create_user():
+
+    user = chat_pb2.User()
+    user.login = "moshhamedani"
+    user.fullName = "Mosh Hamedani"
+
+    return user
+
+
 def run():
    
     with grpc.insecure_channel("0.0.0.0:5050") as channel:
         
         stub = chat_pb2_grpc.ChatServiceStub(channel)
 
-        # Make the call to server for sending a message
-        # response = stub.sendMessage(chat_pb2.sendMessageRequest(message=message()))
-    
-        # Make the call to server for getting the users
-        # listOfUsers = stub.getUsers(chat_pb2.getUsersRequest())
-        # print(listOfUsers)
+        while True:
 
-        # Create the user and get all his messages from server
-        user = chat_pb2.User()
-        user.login = "moshhamedani"
-        user.fullName = "Mosh Hamedani"
+            grpc_call = input("What would like to do? \n '1' - SEND MESSAGE \n '2' - GET USERS \n '3' - GET ALL USER MESSAGES \n '4' - EXIT \n Please enter the number: ").strip()
 
-        messages = stub.getMessages(chat_pb2.getMessagesRequest(user=user))
+            match grpc_call:
 
-        for message in messages:
-            print(message)
+                case "1":
+                    # Make the call to server for sending a message
+                    response = stub.sendMessage(chat_pb2.sendMessageRequest(message=create_message()))
+        
+                case "2":
+                    # Make the call to server for getting the users
+                    listOfUsers = stub.getUsers(chat_pb2.getUsersRequest())
+                    print(listOfUsers)     
+
+                case "3":
+                    # Create the user and get all his messages from server
+                    for message in stub.getMessages(chat_pb2.getMessagesRequest(user=create_user())):
+                        print(message)
+
+                case "4":
+                    break
         
 
 if __name__ == "__main__":
