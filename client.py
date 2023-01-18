@@ -22,7 +22,7 @@ def run():
         stub = chat_pb2_grpc.ChatServiceStub(channel)
 
         # Make the call to server for sending a message
-        # response = stub.sendMessage(chat_pb2.sendMessageRequest(message=message()))
+        response = stub.sendMessage(chat_pb2.sendMessageRequest(message=message()))
     
         # Make the call to server for getting the users
         listOfUsers = stub.getUsers(chat_pb2.getUsersRequest())
