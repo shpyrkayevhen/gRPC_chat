@@ -1,5 +1,5 @@
-import protos.chat_pb2_grpc as chat_pb2_grpc
-import protos.chat_pb2 as chat_pb2
+import chat_proto.chat_pb2_grpc as chat_pb2_grpc
+import chat_proto.chat_pb2 as chat_pb2
 from concurrent import futures
 import grpc
 import time
