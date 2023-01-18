@@ -1,4 +1,4 @@
-PROTO_DIR = protos
+PROTO_DIR = chat_proto
 
 
 install:
