@@ -9,3 +9,5 @@ generate:
 
 clean:
 	rm ${PROTO_DIR}/*_pb2.py
+
+# add the git command for submodule
