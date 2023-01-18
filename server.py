@@ -37,6 +37,17 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         return chat_pb2.getUsersResponce(users=ChatServiceServicer.users)
     
 
+    def getMessages(self, request, context):
+        
+        user_login = request.user.login
+
+        for message in ChatServiceServicer.messages:
+            if message.from_user.login == user_login:
+                yield chat_pb2.getMessagesResponce(message=message)
+                time.sleep(3)
+
+
+
 if __name__ == "__main__":
     
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))
