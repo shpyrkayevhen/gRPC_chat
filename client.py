@@ -1,4 +1,4 @@
-import protos.chat_pb2_grpc as chat_pb2_grpc
+import proto.chat_pb2_grpc as chat_pb2_grpc
 import protos.chat_pb2 as chat_pb2
 import grpc
 
