@@ -45,4 +45,3 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
 
 if __name__ == "__main__":
     run()    
-
