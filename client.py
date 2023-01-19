@@ -1,6 +1,6 @@
-import chat_proto.chat_pb2_grpc as chat_pb2_grpc
-import chat_proto.chat_pb2 as chat_pb2
 import grpc
+
+from chat_proto import chat_pb2_grpc, chat_pb2
 
 
 def create_message():
