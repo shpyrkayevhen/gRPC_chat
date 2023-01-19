@@ -9,3 +9,4 @@ generate:
 
 clean:
 	rm ${PROTO_DIR}/*_pb2.py
+
