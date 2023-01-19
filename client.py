@@ -4,36 +4,36 @@ from chat_proto import chat_pb2_grpc, chat_pb2
 
 
 def create_message():
-
     message = chat_pb2.Message()
     message.id = 1
     message.from_user.login = "moshhamedani"
     message.to_user.login = "mirabuchkovska"
     # message.created_at specify on the server side
     message.body = "Hi, Mira! Can you call me back today. Second message?"
-
     return message
 
 
 def create_user():
-
     user = chat_pb2.User()
     user.login = "moshhamedani"
     user.fullName = "Mosh Hamedani"
-
     return user
 
 
 def run():
    
     with grpc.insecure_channel("0.0.0.0:5050") as channel:
-        
         stub = chat_pb2_grpc.ChatServiceStub(channel)
 
         while True:
 
-            grpc_call = input("What would like to do? \n '1' - SEND MESSAGE \n '2' - GET USERS \n '3' - GET ALL USER MESSAGES \n '4' - EXIT \n Please enter the number: ").strip()
-
+            grpc_call = input("What would like to do? \n \
+                            '1' - SEND MESSAGE \n \
+                            '2' - GET USERS \n \
+                            '3' - GET ALL USER MESSAGES \n \
+                            '4' - EXIT \n \
+                            Please enter the number: ").strip()
+            
             match grpc_call:
 
                 case "1":
@@ -56,23 +56,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
