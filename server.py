@@ -15,7 +15,7 @@ def run():
     server.wait_for_termination()
 
 
-users = chat_pb2.Users()
+users = chat_pb2.Users(user = [{"login": "moshhamedani", "fullName": "Mosh Hamedani"}])
 messages = {}
 
 
@@ -31,13 +31,6 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         else:
             messages[message.to_user.login].append(message)
 
-        # Check if users exist in our system
-        if message.from_user not in users.user:
-            users.user.add(login=message.from_user.login)
-
-        if message.to_user not in users.user:
-            users.user.add(login=message.to_user.login)
-
         return chat_pb2.sendMessageResponce()  
 
     def getUsers(self, request, context):
@@ -52,3 +45,4 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
 
 if __name__ == "__main__":
     run()    
+
