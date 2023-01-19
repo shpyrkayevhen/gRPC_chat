@@ -15,18 +15,19 @@ def create_message():
 
 def create_user():
     user = chat_pb2.User()
-    user.login = "moshhamedani"
+    user.login = "mirabuchkovska"
     user.fullName = "Mosh Hamedani"
     return user
 
 
 def run():
-   
+    
     with grpc.insecure_channel("0.0.0.0:5050") as channel:
+        
         stub = chat_pb2_grpc.ChatServiceStub(channel)
 
         while True:
-
+            
             grpc_call = input("What would like to do? \n \
                             '1' - SEND MESSAGE \n \
                             '2' - GET USERS \n \

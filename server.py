@@ -6,15 +6,6 @@ import grpc
 from chat_proto import chat_pb2_grpc, chat_pb2
 
 
-def run():
-
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    chat_pb2_grpc.add_ChatServiceServicer_to_server(ChatServiceServicer(), server)
-    server.add_insecure_port("[::]:5050")
-    server.start()
-    server.wait_for_termination()
-
-
 users = chat_pb2.Users(user = [{"login": "moshhamedani", "fullName": "Mosh Hamedani"}])
 messages = {}
 
@@ -43,5 +34,13 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                 yield chat_pb2.getMessagesResponce(message=message)
 
 
+def start():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    chat_pb2_grpc.add_ChatServiceServicer_to_server(ChatServiceServicer(), server)
+    server.add_insecure_port("[::]:5050")
+    server.start()
+    server.wait_for_termination()
+
+
 if __name__ == "__main__":
-    run()    
+    start()    
