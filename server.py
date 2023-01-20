@@ -1,5 +1,5 @@
-from concurrent import futures
 import time
+from concurrent import futures
 
 import grpc
 
@@ -7,6 +7,7 @@ from chat_proto import chat_pb2_grpc, chat_pb2
 
 
 users = chat_pb2.Users(user = [{"login": "moshhamedani", "fullName": "Mosh Hamedani"}])
+users = []
 messages = {}
 
 

@@ -4,7 +4,7 @@ import grpc
 from chat_proto import chat_pb2_grpc, chat_pb2
 
 
-def create_message() -> chat_pb2.Message:
+def create_message():
     message = chat_pb2.Message()
     message.id = 1
     message.from_user.login = "moshhamedani"
@@ -14,7 +14,7 @@ def create_message() -> chat_pb2.Message:
     return message
 
 
-def create_user() -> chat_pb2.User:
+def create_user():
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
     user.fullName = "Mosh Hamedani"
