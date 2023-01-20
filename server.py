@@ -7,6 +7,7 @@ from chat_proto import chat_pb2_grpc, chat_pb2
 
 
 def create_user(login: str, fullName: str):
+    """Create a user."""
     user = chat_pb2.User()
     user.login = login
     user.fullName = fullName
@@ -36,10 +37,11 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         return chat_pb2.sendMessageResponce()  
 
     def getUsers(self, request, context):
-        """Returns list of users"""
+        """Returns list of users."""
         return chat_pb2.getUsersResponce(users=chat_pb2.Users(user=users))
 
     def getMessages(self, request, context):
+        """Returns all messages particular user."""
         user_login = request.user.login
         if user_login in messages:
             for message in messages[user_login]:
@@ -47,6 +49,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
 
 
 def start():
+    """Run the server."""
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     chat_pb2_grpc.add_ChatServiceServicer_to_server(ChatServiceServicer(), server)
     server.add_insecure_port("[::]:5050")

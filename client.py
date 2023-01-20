@@ -1,10 +1,10 @@
-"""Main module where implement the stuffs"""
 import grpc
 
 from chat_proto import chat_pb2_grpc, chat_pb2
 
 
 def create_message():
+    """Creates and returns message."""
     message = chat_pb2.Message()
     message.id = 1
     message.from_user.login = "moshhamedani"
@@ -15,6 +15,7 @@ def create_message():
 
 
 def create_user():
+    """Creates and returns user."""
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
     user.fullName = "Mosh Hamedani"
@@ -22,7 +23,7 @@ def create_user():
 
 
 def run():
-    
+    """Connection and sending requests to the server."""
     with grpc.insecure_channel("0.0.0.0:5050") as channel:
         
         stub = chat_pb2_grpc.ChatServiceStub(channel)
@@ -56,7 +57,6 @@ def run():
 
                 case "4":
                     break
-
 
 
 if __name__ == "__main__":
