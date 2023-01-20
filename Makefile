@@ -13,3 +13,5 @@ generate:
 
 clean:
 	rm ${PROPROTO_UPLOAD_TOTO_DIR_TO}/*_pb2.py
+
+# Also will add the pattern for deleting pb2 folder from .gitignore after 'make clean' command
