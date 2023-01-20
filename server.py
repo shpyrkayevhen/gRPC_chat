@@ -36,6 +36,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         return chat_pb2.sendMessageResponce()  
 
     def getUsers(self, request, context):
+        """Returns list of users"""
         return chat_pb2.getUsersResponce(users=chat_pb2.Users(user=users))
 
     def getMessages(self, request, context):
