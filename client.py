@@ -1,9 +1,10 @@
+"""Main module where implement the stuffs"""
 import grpc
 
 from chat_proto import chat_pb2_grpc, chat_pb2
 
 
-def create_message():
+def create_message() -> chat_pb2.Message:
     message = chat_pb2.Message()
     message.id = 1
     message.from_user.login = "moshhamedani"
@@ -13,7 +14,7 @@ def create_message():
     return message
 
 
-def create_user():
+def create_user() -> chat_pb2.User:
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
     user.fullName = "Mosh Hamedani"
@@ -28,12 +29,14 @@ def run():
 
         while True:
             
-            grpc_call = input("What would like to do? \n \
-                            '1' - SEND MESSAGE \n \
-                            '2' - GET USERS \n \
-                            '3' - GET ALL USER MESSAGES \n \
-                            '4' - EXIT \n \
-                            Please enter the number: ").strip()
+            grpc_call = input(
+                "What would like to do? chat_pb2.Message \n \
+                '1' - SEND MESSAGE \n \
+                '2' - GET USERS \n \
+                '3' - GET ALL USER MESSAGES \n \
+                '4' - EXIT \n \
+                Please enter the number: "
+            ).strip()
             
             match grpc_call:
 
