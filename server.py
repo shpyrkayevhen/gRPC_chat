@@ -12,7 +12,7 @@ messages = {}
 
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
-    """Get message from client. Returns list of users and messages."""
+    """Operate with user messages."""
     def sendMessage(self, request, context):
         message = request.message
         message.created_at = time.time()
