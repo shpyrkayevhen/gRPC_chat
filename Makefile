@@ -6,8 +6,9 @@ install:
 	pip install -r requirements.txt
 
 generate:
-	git submodule --update remote
-	mkdir pb2 
+	git submodule update --remote
+	mkdir pb2 && touch pb2/__init__.py
+	echo "pb2/" >> .gitignore
 	python3 -m grpc_tools.protoc -I${PROTO_DIR} --python_out=${PROTO_UPLOAD_TO} --grpc_python_out=${PROTO_UPLOAD_TO} ${PROTO_DIR}/*.proto
 
 clean:
