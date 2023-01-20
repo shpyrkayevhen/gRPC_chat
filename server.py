@@ -6,13 +6,23 @@ import grpc
 from chat_proto import chat_pb2_grpc, chat_pb2
 
 
-users = chat_pb2.Users(user = [{"login": "moshhamedani", "fullName": "Mosh Hamedani"}])
-users = []
+def create_user(login: str, fullName: str):
+    user = chat_pb2.User()
+    user.login = login
+    user.fullName = fullName
+    return user
+
+
+user1 = create_user("moshhamedani", "Mosh Hamedani")
+user2 = create_user("harrypotter", "Harry Potter")
+
+
 messages = {}
+users = [user1, user2]
 
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
-    """Operate with user messages."""
+    """Operate with users and user messages."""
     def sendMessage(self, request, context):
         message = request.message
         message.created_at = time.time()
@@ -26,7 +36,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         return chat_pb2.sendMessageResponce()  
 
     def getUsers(self, request, context):
-        return chat_pb2.getUsersResponce(users=users)
+        return chat_pb2.getUsersResponce(users=chat_pb2.Users(user=users))
 
     def getMessages(self, request, context):
         user_login = request.user.login
