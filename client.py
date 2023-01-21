@@ -3,10 +3,9 @@ import grpc
 from pb2 import chat_pb2, chat_pb2_grpc
 
 
-def create_message():
+def create_message() -> chat_pb2.Message:    
     """Creates and returns message."""
     message = chat_pb2.Message()
-    message.id = 1
     message.from_user.login = "moshhamedani"
     message.to_user.login = "mirabuchkovska"
     # message.created_at specify on the server side
@@ -14,7 +13,7 @@ def create_message():
     return message
 
 
-def create_user():
+def create_user() -> chat_pb2.User:
     """Creates and returns user."""
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
