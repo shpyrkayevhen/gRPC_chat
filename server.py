@@ -20,16 +20,12 @@ user2 = create_user("harrypotter", "Harry Potter")
 
 messages = {}
 users = [user1, user2]
-message_id = 1
 
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
     """Operate with users and user messages."""
     def sendMessage(self, request, context):
-        global message_id
         message = request.message
-        message.id = message_id
-        message_id += 1 
         message.created_at = time.time()
              
         if message.to_user.login not in messages:
