@@ -17,7 +17,7 @@ def create_user():
     """Creates and returns user."""
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
-    user.fullName = "Mosh Hamedani"
+    user.full_name = "Mosh Hamedani"
     return user
 
 

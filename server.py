@@ -10,7 +10,7 @@ def create_user(login, full_name):
     """Create a user."""
     user = chat_pb2.User()
     user.login = login
-    user.fullName = full_name
+    user.full_name = full_name
     return user
 
 
