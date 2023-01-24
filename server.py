@@ -6,7 +6,7 @@ import grpc
 from pb2 import chat_pb2, chat_pb2_grpc
 
 
-def create_user(login, full_name):
+def create_user(login: str, full_name: str) -> chat_pb2.User:
     """Create a user."""
     user = chat_pb2.User()
     user.login = login
@@ -24,7 +24,7 @@ users = [user1, user2]
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
     """Operate with users and user messages."""
-    def sendMessage(self, request, context):
+    def sendMessage(self, request: chat_pb2.sendMessageRequest, context) -> chat_pb2.sendMessageResponce:
         message = request.message
         message.created_at = time.time()
              
@@ -36,11 +36,11 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
 
         return chat_pb2.sendMessageResponce()  
 
-    def getUsers(self, request, context):
+    def getUsers(self, request: chat_pb2.getUsersRequest, context) -> chat_pb2.getMessagesResponce:
         """Returns list of users."""
         return chat_pb2.getUsersResponce(users=chat_pb2.Users(user=users))
 
-    def getMessages(self, request, context):
+    def getMessages(self, request: chat_pb2.getMessagesRequest, context) -> chat_pb2.getMessagesResponce:
         """Returns all messages particular user."""
         user_login = request.user.login
         if user_login in messages:
