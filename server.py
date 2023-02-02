@@ -3,7 +3,8 @@ from concurrent import futures
 
 import grpc
 
-from pb2 import chat_pb2, chat_pb2_grpc
+import chat_pb2_grpc
+import chat_pb2
 
 
 def create_user(login: str, full_name: str) -> chat_pb2.User:
