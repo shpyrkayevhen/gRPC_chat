@@ -17,9 +17,6 @@ def create_user(login: str, full_name: str) -> chat_pb2.User:
 
 user1 = create_user("moshhamedani", "Mosh Hamedani")
 user2 = create_user("harrypotter", "Harry Potter")
-
-
-messages = {}
 users = [user1, user2]
 
 
@@ -27,13 +24,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
     """Operate with users and user messages."""
     def sendMessage(self, request: chat_pb2.sendMessageRequest, context) -> chat_pb2.sendMessageResponce:
         message = request.message
-        message.created_at = time.time()
-             
-        if message.to_user.login not in messages:
-            messages[message.to_user.login] = list()
-            messages[message.to_user.login].append(message)
-        else:
-            messages[message.to_user.login].append(message)
+        message.created_at = int(time.time())
 
         return chat_pb2.sendMessageResponce()  
 
