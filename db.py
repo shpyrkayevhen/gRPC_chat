@@ -43,4 +43,3 @@ class EtcdConnect(Db):
         self._connect()  
         self._instance.delete_prefix(prefix)
         self._instance.close()
-        
