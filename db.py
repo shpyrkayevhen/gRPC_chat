@@ -26,7 +26,7 @@ class EtcdConnect(Db):
         '''Connect to etcd db.'''
         self._instance = etcd3.client(host=self._host, port=self._port)
 
-    def write(self, key: str, value: str) -> None: 
+    def write(self, key: str, value) -> None: 
         '''Write data to db.'''
         self._connect()
         self._instance.put(key, value)

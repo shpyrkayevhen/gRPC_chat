@@ -1,6 +1,5 @@
 PROTO_DIR = chat_proto
 
-
 install:
 	pip install -r requirements.txt
 
