@@ -26,8 +26,11 @@ etcd = db.EtcdConnect('localhost', '2379')
 
 
 class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
+    
     """Operate with users and user messages."""
+    
     def sendMessage(self, request: chat_pb2.sendMessageRequest, context) -> chat_pb2.sendMessageResponce:
+        """Send message to user."""
         message = request.message
         message.created_at = int(time.time())
         # write data to db
@@ -44,6 +47,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
         for messages in etcd.get(f'{request.user.login}'):
             for message, _ in messages:
                 yield chat_pb2.getMessagesResponce(message=google.protobuf.text_format.Parse(message.decode('utf-8'), chat_pb2.Message()))
+                etcd.delete(message)
 
 
 def start():
