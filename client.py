@@ -10,7 +10,7 @@ def create_message() -> chat_pb2.Message:
     message.from_user.login = "moshhamedani"
     message.to_user.login = "mirabuchkovska"
     # message.created_at specify on the server side
-    message.body = "Hi, Mira! Can you call me back today. Second message?"
+    message.body = "Hi, Mira! Can you call me back today. First message?"
     return message
 
 
@@ -18,7 +18,7 @@ def create_user() -> chat_pb2.User:
     """Creates and returns user."""
     user = chat_pb2.User()
     user.login = "mirabuchkovska"
-    user.full_name = "Mosh Hamedani"
+    user.full_name = "Mira Buchkovska"
     return user
 
 
